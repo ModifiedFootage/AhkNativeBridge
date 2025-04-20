@@ -1,0 +1,7 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Google\Chrome\NativeMessagingHosts\com.nativebridge.test]
+@="C:\\NativeBridgeTest\\native_host\\com.nativebridge.test.json"
+
+[HKEY_CURRENT_USER\Software\BraveSoftware\Brave-Browser\NativeMessagingHosts\com.nativebridge.test]
+@="C:\\NativeBridgeTest\\native_host\\com.nativebridge.test.json"
