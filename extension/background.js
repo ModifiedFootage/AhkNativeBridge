@@ -1,22 +1,29 @@
 console.log("🔗 [SW] starting up");
+let port = null,
+  attempt = 0;
 
 function connect() {
-  console.log("🔌 [SW] connecting to native host…");
-  const port = chrome.runtime.connectNative("com.nativebridge.test");
-
+  attempt++;
+  console.log(`🔌 [SW] Attempt ${attempt}: connectNative…`);
+  if (port) {
+    port.disconnect();
+    port = null;
+  }
+  port = chrome.runtime.connectNative("com.nativebridge.test");
   port.onMessage.addListener((msg) => {
-    console.log("📨 [SW] AHK event:", msg.event);
+    console.log("[SW] ‹message›", msg);
+    if (msg.type === "ahk_event") {
+      console.log("✅ [SW] AHK event:", msg.payload);
+    } else if (msg.echo) {
+      console.log("✅ [SW] Echo from Python:", msg.echo);
+    }
   });
-
   port.onDisconnect.addListener(() => {
-    console.warn("⚠️ [SW] native port disconnected", chrome.runtime.lastError);
-    // try to reconnect in 1 s
+    console.warn("[SW] disconnected", chrome.runtime.lastError);
     setTimeout(connect, 1000);
   });
-
-  console.log("📝 [SW] sending handshake");
-  port.postMessage({ cmd: "start" });
+  console.log(`📝 [SW] sending handshake`);
+  port.postMessage({ cmd: "start", attempt });
 }
 
-// fire immediately when the SW spins up:
 connect();

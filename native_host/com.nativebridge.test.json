@@ -1,10 +1,9 @@
 {
-    "name": "com.nativebridge.test",
-    "description": "Persistent event bridge",
-    "path": "C:\\NativeBridgeTest\\native_host\\launch.bat",
-    "type": "stdio",
-    "allowed_origins": [
-      "chrome-extension://fedjpkbjlhmmnaipkljgbhfofpnmbamc/"
-    ]
-  }
-  
+  "name": "com.nativebridge.test",
+  "description": "Persistent event bridge",
+  "path": "C:\\NativeBridgeTest\\native_host\\launch.bat",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://fedjpkbjlhmmnaipkljgbhfofpnmbamc/"
+  ]
+}
